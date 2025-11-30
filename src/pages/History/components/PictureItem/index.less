@@ -1,0 +1,42 @@
+.picture-item {
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  &:first-child {
+    border: 1px solid white;
+  }
+  .history-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .item-preview {
+      margin: 20px;
+      width: 200px;
+      height: 100px;
+    }
+    .item-name {
+      margin: 20px;
+    }
+    .item-url {
+      margin-right: 20px;
+    }
+    .history-button-box {
+      gap: 10px;
+      display: flex;
+      margin-right: 10px;
+      .delete-history-button {
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        text-wrap: nowrap;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

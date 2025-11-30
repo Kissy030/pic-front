@@ -1,0 +1,109 @@
+.login-content {
+  display: flex;
+  flex-flow: column;
+  // justify-content: center;
+  // align-items: center;
+  .login-title {
+    margin-top: 200px;
+  }
+  .dont-have-account {
+    display: flex;
+    flex-flow: row;
+    .dont-have-account-text {
+      margin-top: 20px;
+    }
+    .signup {
+      color: rgb(0, 110, 255);
+      margin-top: 20px;
+      margin-left: 10px;
+      text-decoration: none;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: rgb(2, 82, 187);
+      }
+    }
+  }
+
+  .login-input {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: stretch;
+    .code-box {
+      margin-top: 20px;
+      position: relative;
+      // align-self: flex-start;
+      .sendCode-button {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        position: absolute;
+        height: 100%;
+        border: none;
+        margin-left: 5px;
+        color: rgb(86, 43, 143);
+        border-radius: 10px;
+        &:hover {
+          cursor: pointer;
+        }
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+      .code-input {
+        margin: 0;
+      }
+    }
+
+    .input-box {
+      font-size: 20px;
+      height: 30px;
+      margin-top: 20px;
+      &:hover {
+        border-bottom: 1px solid rgb(0, 110, 255);
+      }
+
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid rgb(0, 110, 255);
+      }
+    }
+
+    // .toggle-password-visibility-button {
+    //   border: none;
+    //   cursor: pointer;
+    //   background-color: transparent;
+    //   color: rgb(0, 110, 255);
+    //   font-size: 18px;
+    //   &:hover {
+    //     color: rgb(2, 82, 187);
+    //   }
+    // }
+    .code {
+      text-wrap: nowrap;
+    }
+    .login-button {
+      border: none;
+      cursor: pointer;
+      color: rgb(0, 110, 255);
+      font-size: 40px;
+      margin-top: 20px;
+
+      &:hover {
+        color: rgb(2, 82, 187);
+      }
+    }
+  }
+  .login-button-box {
+    align-self: center;
+  }
+  .forget-password {
+    color: rgb(0, 110, 255);
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: rgb(2, 82, 187);
+    }
+  }
+}

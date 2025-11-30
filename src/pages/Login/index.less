@@ -1,0 +1,89 @@
+.login-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-top: 150px;
+  color: black;
+  .login-title {
+  }
+  .dont-have-account {
+    display: flex;
+    flex-flow: row;
+    .dont-have-account-text {
+      margin-top: 20px;
+    }
+    .signup {
+      color: rgb(0, 110, 255);
+      margin-top: 20px;
+      margin-left: 10px;
+      text-decoration: none;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: rgb(2, 82, 187);
+      }
+    }
+  }
+
+  .login-input {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    .passowrd-box {
+      background-color: transparent;
+    }
+    .input-box {
+      border: none;
+      border-bottom: 1px solid white;
+      border-radius: 10px;
+      background-color: rgb(231, 237, 238);
+      font-size: 20px;
+      height: 30px;
+      margin-top: 20px;
+      // &:hover {
+      //   border-bottom: 1px solid rgb(0, 110, 255);
+      // }
+
+      // &:focus {
+      //   outline: none;
+      //   border-bottom: 1px solid rgb(0, 110, 255);
+      // }
+    }
+    .toggle-password-visibility-button {
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      color: rgb(0, 110, 255);
+      font-size: 18px;
+      margin-left: 5px;
+      &:hover {
+        color: rgb(2, 82, 187);
+      }
+    }
+    .login-button {
+      border: none;
+      cursor: pointer;
+      color: rgb(0, 110, 255);
+      font-size: 40px;
+      margin-top: 20px;
+      justify-content: center;
+      &:hover {
+        color: rgb(2, 82, 187);
+      }
+    }
+  }
+  .forget-password {
+    color: rgb(0, 110, 255);
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: rgb(2, 82, 187);
+    }
+  }
+}
