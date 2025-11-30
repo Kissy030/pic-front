@@ -1,7 +1,8 @@
+import { API_BASE_URL } from "../../../../config";
 export async function sendEmail(data: MailInfo) {
   try {
     const response = await fetch(
-      `http://localhost:4000/mail/code?address=${encodeURIComponent(data.to)}`,
+      `${API_BASE_URL}/mail/code?address=${encodeURIComponent(data.to)}`,
       {
         method: "GET",
         headers: {
@@ -21,7 +22,7 @@ export async function sendEmail(data: MailInfo) {
 
 export async function addNewUser(data: UserInfo) {
   try {
-    const response = await fetch("http://localhost:4000/user/register", {
+    const response = await fetch(`${API_BASE_URL}/user/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +44,7 @@ export async function addNewUser(data: UserInfo) {
 
 export async function authCode(email: string, code: string) {
   try {
-    const response = await fetch("http://localhost:4000/user/authcode", {
+    const response = await fetch(`${API_BASE_URL}/user/authcode`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

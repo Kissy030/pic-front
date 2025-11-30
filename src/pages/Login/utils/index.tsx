@@ -1,7 +1,8 @@
 import { ACCESS_TOKEN } from "../../constants";
+import { API_BASE_URL } from "../../../../config";
 export async function signIn(username: string, pass: string) {
   try {
-    const response = await fetch("http://localhost:4000/user/login", {
+    const response = await fetch(`${API_BASE_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config";
 import { ACCESS_TOKEN } from "./pages/constants";
 
 export async function request(
@@ -7,7 +8,7 @@ export async function request(
 ) {
   try {
     const access_token = sessionStorage.getItem(ACCESS_TOKEN);
-    const response = await fetch(`http://localhost:4000/${path}`, {
+    const response = await fetch(`${API_BASE_URL}/${path}`, {
       method: method,
       headers: {
         "Content-Type": "application/json",

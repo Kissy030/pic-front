@@ -1,6 +1,7 @@
+import { API_BASE_URL } from "../../../../config";
 export async function authCode(email: string, code: string) {
   try {
-    const response = await fetch("http://localhost:4000/user/authCode", {
+    const response = await fetch(`${API_BASE_URL}/user/authCode`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
