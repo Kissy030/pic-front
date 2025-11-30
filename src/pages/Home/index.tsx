@@ -2,8 +2,7 @@ import React from "react";
 import { Button, message } from "antd";
 import "./index.less";
 import { useRef, useState, useCallback } from "react";
-import { put } from "./utils/put";
-import { addNewPic } from "./utils";
+import { addNewPic, uploadFileToOSS } from "./utils";
 export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [currentPicBase64, setCurrentPicBase64] = useState("");
@@ -24,18 +23,21 @@ export default function Home() {
     });
   };
   const uploadFile = async (file: File) => {
-    //@ts-ignore
+    if (!file.type.startsWith("image/")) {
+      messageApi.error("请上传图片文件");
+      return;
+    }
 
-    const fileInfo = await put(file, file.name);
+    try {
+      const fileInfo = await uploadFileToOSS(file); // 👈 使用新函数
 
-    if (fileInfo) {
-      upLoadSuccessMessage();
-      return {
-        pic_name: fileInfo.picName,
-        pic_url: fileInfo.picUrl,
-        pic_message: fileInfo.picMessage,
-        // pic_base64: currentPicBase64,
-      };
+      if (fileInfo) {
+        upLoadSuccessMessage();
+        return fileInfo; // 返回 { pic_name, pic_url, pic_message }
+      }
+    } catch (error) {
+      console.error("上传失败:", error);
+      messageApi.error((error as Error).message || "上传失败");
     }
   };
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
