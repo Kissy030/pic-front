@@ -9,15 +9,13 @@ export async function addNewPic(data: PicInfo) {
 
 export async function requestUploadUrl(fileName: string, contentType: string) {
   const res = await fetch(
-    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}&contentType=${encodeURIComponent(
-      contentType
-    )}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}&contentType=${contentType}`
   );
   if (!res.ok) {
     const err = await res.json();
     throw new Error(err.message || "获取上传地址失败");
   }
-  return await res.json(); // { uploadUrl, objectName, accessUrl }
+  return await res.json(); // { uploadUrl, accessUrl }
 }
 
 export async function uploadFileToOSS(file: File): Promise<PicInfo> {
