@@ -44,9 +44,10 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
       "Content-Type": contentType,
     },
   });
-
   if (!uploadRes.ok) {
-    throw new Error("上传失败，请重试");
+    const errorText = await uploadRes.text();
+    console.error("OSS 错误响应:", errorText);
+    throw new Error(`上传失败: ${uploadRes.status}`);
   }
 
   return {
