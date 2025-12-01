@@ -29,7 +29,7 @@ export default function Home() {
     }
 
     try {
-      const fileInfo = await uploadFileToOSS(file); // 👈 使用新函数
+      const fileInfo = await uploadFileToOSS(file);
 
       if (fileInfo) {
         upLoadSuccessMessage();

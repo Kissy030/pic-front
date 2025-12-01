@@ -9,9 +9,9 @@ export async function addNewPic(data: PicInfo) {
 
 export async function requestUploadUrl(fileName: string, contentType: string) {
   const res = await fetch(
-    `${API_BASE_URL}/oss/upload-url?fileName=${encodeURIComponent(
-      fileName
-    )}&contentType=${encodeURIComponent(contentType)}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}&contentType=${encodeURIComponent(
+      contentType
+    )}`
   );
   if (!res.ok) {
     const err = await res.json();
