@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../../../config";
 import { request } from "../../../request";
 export async function addNewPic(data: PicInfo) {
   console.log(data, "data");
@@ -8,7 +9,7 @@ export async function addNewPic(data: PicInfo) {
 
 export async function requestUploadUrl(fileName: string) {
   const res = await fetch(
-    `/api/oss/upload-url?fileName=${encodeURIComponent(fileName)}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${encodeURIComponent(fileName)}`
   );
   if (!res.ok) {
     const err = await res.json();

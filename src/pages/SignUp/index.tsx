@@ -22,25 +22,6 @@ export default function SignUp() {
   const [messageApi, contextHolder] = message.useMessage();
   const [countdown, setCountdown] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  // const sendVerificationCode = () => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //     setCountdown(60);
-  //     timerRef.current = setInterval(() => {
-  //       setCountdown((prev) => {
-  //         if (prev <= 1) {
-  //           if (timerRef.current !== null) {
-  //             clearInterval(timerRef.current);
-  //             timerRef.current = null;
-  //           }
-  //           return 0;
-  //         }
-  //         return prev - 1;
-  //       });
-  //     }, 1000);
-  //   }, 1000);
-  // };
 
   useEffect(() => {
     return () => {
