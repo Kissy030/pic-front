@@ -7,9 +7,11 @@ export async function addNewPic(data: PicInfo) {
   console.log(res, "res");
 }
 
-export async function requestUploadUrl(fileName: string) {
+export async function requestUploadUrl(fileName: string, contentType: string) {
   const res = await fetch(
-    `${API_BASE_URL}/oss/upload-url?fileName=${encodeURIComponent(fileName)}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${encodeURIComponent(
+      fileName
+    )}&contentType=${encodeURIComponent(contentType)}`
   );
   if (!res.ok) {
     const err = await res.json();
@@ -27,15 +29,19 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
   const safeName = `${Date.now()}-${Math.random()
     .toString(36)
     .slice(2)}.${ext}`;
+  const contentType = file.type || "application/octet-stream";
 
-  const { uploadUrl, accessUrl } = await requestUploadUrl(safeName);
+  const { uploadUrl, accessUrl } = await requestUploadUrl(
+    safeName,
+    contentType
+  );
 
   // 直接 PUT 到 OSS
   const uploadRes = await fetch(uploadUrl, {
     method: "PUT",
     body: file,
     headers: {
-      "Content-Type": file.type || "application/octet-stream",
+      "Content-Type": contentType,
     },
   });
 
@@ -44,7 +50,7 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
   }
 
   return {
-    pic_name: "",
+    pic_name: safeName,
     pic_url: accessUrl,
   };
 }
