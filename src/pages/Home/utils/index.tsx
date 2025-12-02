@@ -8,8 +8,9 @@ export async function addNewPic(data: PicInfo) {
 }
 
 export async function requestUploadUrl(fileName: string, contentType: string) {
+  const encodedContentType = encodeURIComponent(contentType);
   const res = await fetch(
-    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}&contentType=${encodedContentType}`
   );
   if (!res.ok) {
     const err = await res.json();
