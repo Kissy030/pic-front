@@ -27,7 +27,7 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
   const safeName = `${Date.now()}-${Math.random()
     .toString(36)
     .slice(2)}.${ext}`;
-  const contentType = file.type || "application/octet-stream";
+  const contentType = file.type;
 
   const { uploadUrl, accessUrl } = await requestUploadUrl(
     safeName,
@@ -39,7 +39,7 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
     method: "PUT",
     body: file,
     headers: {
-      "Content-Type": contentType,
+      "Content-Type": "image/png",
     },
   });
   if (!uploadRes.ok) {
