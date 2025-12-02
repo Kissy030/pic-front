@@ -9,7 +9,7 @@ export async function addNewPic(data: PicInfo) {
 
 export async function requestUploadUrl(fileName: string, contentType: string) {
   const res = await fetch(
-    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}&contentType=${contentType}`
+    `${API_BASE_URL}/oss/upload-url?fileName=${fileName}`
   );
   if (!res.ok) {
     const err = await res.json();
@@ -23,33 +23,26 @@ export async function uploadFileToOSS(file: File): Promise<PicInfo> {
     throw new Error("文件大小不能超过10MB");
   }
 
-  const ext = file.name.split(".").pop() || "";
-  const safeName = `${Date.now()}-${Math.random()
-    .toString(36)
-    .slice(2)}.${ext}`;
-  const contentType = file.type;
+  const name = file.name;
+  const contentType = file.type || "application/octet-stream";
 
-  const { uploadUrl, accessUrl } = await requestUploadUrl(
-    safeName,
-    contentType
-  );
+  const { uploadUrl, accessUrl } = await requestUploadUrl(name, contentType);
 
   // 直接 PUT 到 OSS
   const uploadRes = await fetch(uploadUrl, {
     method: "PUT",
     body: file,
     headers: {
-      "Content-Type": "image/png",
+      "Content-Type": contentType,
     },
   });
   if (!uploadRes.ok) {
     const errorText = await uploadRes.text();
     console.error("OSS 错误响应:", errorText);
-    throw new Error(`上传失败: ${uploadRes.status}`);
   }
 
   return {
-    pic_name: safeName,
+    pic_name: name,
     pic_url: accessUrl,
   };
 }
