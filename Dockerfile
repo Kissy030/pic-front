@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build   # 生成 dist/ 目录
+RUN npm run build   
 
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
