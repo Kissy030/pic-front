@@ -3,6 +3,7 @@ import { Button, message } from "antd";
 import "./index.less";
 import { useRef, useState, useCallback } from "react";
 import { addNewPic, uploadFileToOSS } from "./utils";
+import copy from "copy-to-clipboard";
 export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [currentPicBase64, setCurrentPicBase64] = useState("");
@@ -109,12 +110,12 @@ export default function Home() {
     }
   }, []);
 
-  const handleCopyToClipBoard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
+  const handleCopyToClipBoard = (text: string) => {
+    const success = copy(text);
+    if (success) {
       handleSuccessMessage("复制");
-    } catch (error) {
-      console.log(error);
+    } else {
+      messageApi.error("复制失败");
     }
   };
   const handleCopyUrl = () => {

@@ -17,6 +17,9 @@ importers:
       antd:
         specifier: ^5.26.6
         version: 5.26.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      copy-to-clipboard:
+        specifier: ^3.3.3
+        version: 3.3.3
       express:
         specifier: ^5.1.0
         version: 5.1.0
