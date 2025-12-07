@@ -1,6 +1,7 @@
 import "./index.less";
 import { sendDelete } from "./utils";
 import { message } from "antd";
+import copy from "copy-to-clipboard";
 interface PictureItemProps {
   pictureInfo: PicInfo;
   onDelete: () => void;
@@ -10,12 +11,12 @@ export default function PictureItem(props: PictureItemProps) {
   const { pictureInfo, onDelete } = props;
   const { pic_id, pic_name, pic_url } = pictureInfo;
 
-  const handleCopyToClipBoard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
+  const handleCopyToClipBoard = (text: string) => {
+    const success = copy(text);
+    if (success) {
       handleSuccessMessage("复制");
-    } catch (error) {
-      console.log(error);
+    } else {
+      messageApi.error("复制失败");
     }
   };
   const handleSuccessMessage = (message: string) => {
